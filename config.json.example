@@ -1,0 +1,17 @@
+{
+    "wifi": {
+        "SSID": "",
+        "password": ""
+    },
+    "api": {
+        "url": "http://...:8080/",
+        "token": "",
+        "id": 1,
+        "poll_interval": 5
+    },
+    "led": {
+        "red": 26,
+        "green": 27,
+        "blue": 25
+    }
+}
