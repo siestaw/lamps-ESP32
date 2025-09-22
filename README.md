@@ -1,4 +1,4 @@
-# laterna-ESP32
+# lamps-ESP32
 
 Created for personal usage only, no support guaranteed. Although I don't really see any point for anyone else to use this, I'm gonna try to help either over at discord (@siesta.161) or in the GitHub issues of this repo, if any problems arise (they probably will).
 
