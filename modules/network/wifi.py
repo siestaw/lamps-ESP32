@@ -1,11 +1,24 @@
 import network
+import time
 
-def connect_wifi(ssid, password):
-    sta_if = network.WLAN(network.WLAN.IF_STA)
-    if not sta_if.isconnected():
-        print('connecting to network...')
-        sta_if.active(True)
-        sta_if.connect(ssid, password)
-        while not sta_if.isconnected():
-            pass
-        print('network config:', sta_if.ipconfig('addr4'))
+class WifiError(Exception):
+    pass
+
+def connect_wifi(ssid, password, timeout=10):
+    wlan = network.WLAN(network.STA_IF)  # Station Interface
+    wlan.active(True)
+
+    if not wlan.isconnected():
+        try:
+            wlan.connect(ssid, password)
+        except OSError as e:
+            raise WifiError(f"Wifi connect failed: {e}") from e
+
+        start = time.ticks_ms()
+        while not wlan.isconnected():
+            if time.ticks_diff(time.ticks_ms(), start) > timeout * 1000:
+                raise WifiError("Couldn't connect to WiFi")
+            time.sleep(0.1)
+
+    print("Connected! IP:", wlan.ifconfig()[0])
+    return wlan.ifconfig()

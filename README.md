@@ -16,8 +16,6 @@ A [example config](https://github.com/siestaw/laterna-esp32/blob/main/config.jso
 $ cp config.json.example config.json
 ```
 
-It is required to edit the config, otherwise everything will go to shit (i still have to implement proper error handling x:)
-
 #### 3. Copy onto the microcontroller
 
 for example, using [mpremote](https://docs.micropython.org/en/latest/reference/mpremote.html)
@@ -27,3 +25,10 @@ $ mpremote connect /dev/ttyUSB0 fs cp * :
 ```
 
 You could also use the [MicroPico VS Code Extension](https://github.com/paulober/MicroPico) for the installation process. Despite it's name, it works wonderfully on ESP32 boards and has blessed me with an bearable developer experience instead of losing my sanity over mpremote
+
+## Error Codes
+
+| Color  | Interval | Message             |
+| ------ | -------- | ------------------- |
+| Red    | 1        | Internal Wifi Error |
+| Yellow | 0.5      | API Error           |
