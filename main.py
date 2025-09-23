@@ -3,6 +3,8 @@ from modules.api import client
 from modules.led import controller
 import time, ujson
 
+time.sleep(2) # wait for Wifi-Interface to start
+
 with open("config.json", "r") as read_config:
     config = ujson.load(read_config)
     
