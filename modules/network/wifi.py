@@ -6,7 +6,7 @@ class WifiError(Exception):
     pass
 
 def connect_wifi(ssid, password, timeout=10):
-    logger("Connecting to wifi...")
+    logger("Connecting to Wifi...")
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
 

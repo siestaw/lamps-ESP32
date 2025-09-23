@@ -18,7 +18,7 @@ def get_color(url, id, token):
         resp.close()
 
     except Exception as e:
-        raise ApiError("Couldn't connect to laterna API") from e
+        raise ApiError("Couldn't connect to Laterna API")
     
     if data["success"] == False:
         raise DataError(data["error"])

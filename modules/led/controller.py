@@ -26,10 +26,11 @@ def init_leds(pins, freq=1000):
             led.value(0)
             time.sleep(1)
 
-def set_color(r, g, b):
+def set_color(r, g, b, error=False):
+    if error == False:
+        logger(str(f"Changing color to {r}, {g}, {b}"))
     def scale(x):
         return int(x * 1023 / 255)
-    logger(str(f"Changing color to {r}, {g}, {b}"))
     _red.duty(scale(r))
     _green.duty(scale(g))
     _blue.duty(scale (b))
@@ -37,7 +38,7 @@ def set_color(r, g, b):
 def error_handler(r, g, b, interval, msg):
     logger(str("ERROR: " + msg))
     while True:
-        set_color(r, g, b)
+        set_color(r, g, b, error=True)
         time.sleep(interval)
-        set_color(0, 0, 0)
+        set_color(0, 0, 0, error=True)
         time.sleep(interval)
