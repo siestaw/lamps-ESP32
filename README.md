@@ -4,7 +4,7 @@ Created for personal usage only, no support guaranteed. Although I don't really 
 
 ## Setup
 
-#### 0.5. Setup a [Laterna](https://github.com/siestaw/laterna?tab=readme-ov-file#%EF%B8%8F-setup) server
+First and foremost, you're gonna need a [Laterna](https://github.com/siestaw/laterna?tab=readme-ov-file#%EF%B8%8F-setup) server
 
 #### 1. Flash [MicroPython](https://docs.micropython.org/en/latest/esp32/tutorial/intro.html) onto your model by following their documentation
 
@@ -15,6 +15,32 @@ A [example config](https://github.com/siestaw/laterna-esp32/blob/main/config.jso
 ```sh
 $ cp config.json.example config.json
 ```
+
+<details><summary>Configuration explanation</summary>
+
+```jsonc
+{
+    "wifi": {
+        "SSID": "", // Name of the Wifi Network
+        "password": "" // Pasword of the Wifi Network
+    },
+    "api": {
+        "url": "http://...:8080/", // Laterna API address
+        "token": "", // Laterna API token
+        "id": 1, // Laterna Controller ID
+        "poll_interval": 5 // Seconds to wait before pinging the server for color updates
+    },
+    "led": {
+        "red": 26, // PIN of the RED LED
+        "green": 27, // PIN of the GREEN LED
+        "blue": 25 // PIN of the BLUE LED
+    }
+}
+```
+
+For more information on how to configure your Laterna server (token, controller ID), consult the [Laterna api documentation](https://github.com/siestaw/Laterna?tab=readme-ov-file#-api-documentation)
+
+</details>
 
 #### 3. Copy onto the microcontroller
 
@@ -30,5 +56,6 @@ You could also use the [MicroPico VS Code Extension](https://github.com/paulober
 
 | Color  | Interval | Message             |
 | ------ | -------- | ------------------- |
+| White  | 0        | Starting up         |
 | Red    | 1        | Internal Wifi Error |
 | Yellow | 0.5      | API Error           |
