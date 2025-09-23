@@ -5,7 +5,6 @@ from modules.utils.helpers import logger
 import time, ujson
 
 logger("Starting up!")
-time.sleep(2) # wait for Wifi-Interface to start
 
 logger("Parsing config...")
 with open("config.json", "r") as read_config:

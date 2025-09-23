@@ -1,23 +1,33 @@
-import network
-import time
+import network, time
 from modules.utils.helpers import logger
+
 
 class WifiError(Exception):
     pass
 
-def connect_wifi(ssid, password, timeout=10):
-    logger("Connecting to Wifi...")
+def connect_wifi(ssid, password):
+    logger("Trying to connect to wifi...")
     wlan = network.WLAN(network.STA_IF)
+    wlan.active(False)
+    time.sleep(0.2)
     wlan.active(True)
+    time.sleep(0.2)
 
-    if not wlan.isconnected():
+    for attempt in range(5):
         try:
-            wlan.connect(str(ssid), str(password))
+            wlan.connect(ssid, password)
         except OSError as e:
-            raise WifiError(f"Wifi connect failed: {e}") from e
+            logger("WLAN connect error")
 
         start = time.ticks_ms()
         while not wlan.isconnected():
-            if time.ticks_diff(time.ticks_ms(), start) > timeout * 1000:
-                raise WifiError("Couldn't connect to WiFi")
+            if time.ticks_diff(time.ticks_ms(), start) > 5000:
+                logger(f"Attempt {attempt+1} failed, retrying...")
+                break
             time.sleep(0.1)
+        else:
+            return wlan.ifconfig()
+
+        time.sleep(1)
+
+    raise WifiError("Couldn't connect to WiFi after retries")
