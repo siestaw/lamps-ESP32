@@ -10,7 +10,7 @@ def connect_wifi(ssid, password, timeout=10):
 
     if not wlan.isconnected():
         try:
-            wlan.connect(ssid, password)
+            wlan.connect(str(ssid), str(password))
         except OSError as e:
             raise WifiError(f"Wifi connect failed: {e}") from e
 

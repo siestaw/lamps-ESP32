@@ -9,10 +9,10 @@ time.sleep(2) # wait for Wifi-Interface to start
 with open("config.json", "r") as read_config:
     config = ujson.load(read_config)
     
-url = config["api"]["url"]
-controller_id = config["api"]["id"]
-token = config["api"]["token"]
-poll_interval = config["api"]["poll_interval"]
+url = str(config["api"]["url"])
+controller_id = int(config["api"]["id"])
+token = str(config["api"]["token"])
+poll_interval = int(config["api"]["poll_interval"])
 
 controller.init_leds(config["led"])
 
