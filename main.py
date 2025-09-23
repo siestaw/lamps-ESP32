@@ -1,11 +1,13 @@
 from modules.network import wifi
 from modules.api import client
 from modules.led import controller
+from modules.utils.helpers import logger
 import time, ujson
 
-print("Starting up!")
+logger("Starting up!")
 time.sleep(2) # wait for Wifi-Interface to start
 
+logger("Parsing config...")
 with open("config.json", "r") as read_config:
     config = ujson.load(read_config)
     
@@ -30,10 +32,13 @@ except client.ApiError as e:
 except client.DataError as e:
     controller.error_handler(0, 0, 255, 1, str(e))
 
+logger("Everything set up! Running the main loop...")
 while True:
     try:
         r, g, b = client.get_color(url, controller_id, token)
-        controller.set_color(r, g, b)
+        if (r, g, b) != current_color:
+            controller.set_color(r, g, b)
+            current_color = (r, g, b)
     except client.ApiError as e:
         controller.error_handler(255, 0, 255, 1, str(e))
     except client.DataError as e:

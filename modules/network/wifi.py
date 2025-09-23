@@ -1,11 +1,13 @@
 import network
 import time
+from modules.utils.helpers import logger
 
 class WifiError(Exception):
     pass
 
 def connect_wifi(ssid, password, timeout=10):
-    wlan = network.WLAN(network.STA_IF)  # Station Interface
+    logger("Connecting to wifi...")
+    wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
 
     if not wlan.isconnected():
@@ -19,6 +21,3 @@ def connect_wifi(ssid, password, timeout=10):
             if time.ticks_diff(time.ticks_ms(), start) > timeout * 1000:
                 raise WifiError("Couldn't connect to WiFi")
             time.sleep(0.1)
-
-    print("Connected! IP:", wlan.ifconfig()[0])
-    return wlan.ifconfig()
