@@ -31,9 +31,10 @@ $ cp config.json.example config.json
         "poll_interval": 5 // Seconds to wait before pinging the server for color updates
     },
     "led": {
-        "red": 26, // PIN of the RED LED
-        "green": 27, // PIN of the GREEN LED
-        "blue": 25 // PIN of the BLUE LED
+        "red": 26, // PIN of the red LED
+        "green": 27, // PIN of the green LED
+        "blue": 25, // PIN of the blue LED
+        "internal": 2 // PIN of the internal LED (probably doesn't need to be changed)
     }
 }
 ```
@@ -54,11 +55,12 @@ You could also use the [MicroPico VS Code Extension](https://github.com/paulober
 
 ## Error Codes
 
-| Color  | Interval | Message                               |
-| ------ | -------- | ------------------------------------- |
-| Red    | 1        | Internal Wifi Error                   |
-| Yellow | 1        | API Connection Error                  |
-| Blue   | 1        | Laterna Error (check your API config) |
+| Color        | Interval | Message                               |
+| ------------ | -------- | ------------------------------------- |
+| Red          | 1        | Internal Wifi Error                   |
+| Yellow       | 1        | API Connection Error                  |
+| Blue         | 1        | Laterna Error (check your API config) |
+| Internal LED | 1        | RGB LED configuration error           |
 
 You can connect to the microcontroller over REPL to get more detailed error descriptions. After you've established an connection, exit the current file execution by running 'CTRL + C'. Then, import main to restart the program
 

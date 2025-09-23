@@ -12,6 +12,7 @@
     "led": {
         "red": 26,
         "green": 27,
-        "blue": 25
+        "blue": 25,
+        "internal": 2
     }
 }

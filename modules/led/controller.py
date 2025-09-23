@@ -7,12 +7,22 @@ _blue = None
 
 def init_leds(pins, freq=1000):
     global _red, _green, _blue
-    _red = PWM(Pin(pins["red"]))
-    _green = PWM(Pin(pins["green"]))
-    _blue = PWM(Pin(pins["blue"]))
+    try:
+        _red = PWM(Pin(pins["red"]))
+        _green = PWM(Pin(pins["green"]))
+        _blue = PWM(Pin(pins["blue"]))
 
-    for pin in (_red, _green, _blue):
-        pin.freq(freq)
+        for pin in (_red, _green, _blue):
+            pin.freq(freq)
+
+    except ValueError as e:
+        print("ERROR: " + str(e))
+        led = Pin(pins["internal"], Pin.OUT)
+        while True:
+            led.value(1)
+            time.sleep(1)
+            led.value(0)
+            time.sleep(1)
 
 def set_color(r, g, b):
     def scale(x):
