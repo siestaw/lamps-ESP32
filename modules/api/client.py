@@ -5,6 +5,9 @@ import json
 class ApiError(Exception):
     pass
 
+class DataError(Exception):
+    pass
+
 def get_color(url, id, token):
     api = url.rstrip("/")+ "/api/v1/colors/" + str(id)
     headers = {"Authorization": token}
@@ -17,16 +20,9 @@ def get_color(url, id, token):
     except Exception as e:
         raise ApiError("Couldn't connect to laterna API") from e
     
+    if data["success"] == False:
+        raise DataError(data["error"])
+    
     hex_color = data["data"]["color"]
     r, g, b = helpers.hex_to_rgb(hex_color)
     return r, g, b
-    
-def post_controllers(url, token):
-    api = url.rstrip("/") + "/api/v1/controllers"
-    headers = {"Authorization": token}
-
-    resp = urequests.post(api, headers=headers)
-    data = resp.json()
-    resp.close()
-
-    return data["data"]["created"]

@@ -3,6 +3,7 @@ from modules.api import client
 from modules.led import controller
 import time, ujson
 
+print("Starting up!")
 time.sleep(2) # wait for Wifi-Interface to start
 
 with open("config.json", "r") as read_config:
@@ -25,12 +26,17 @@ try:
     controller.set_color(r, g, b)
     current_color = (r, g, b)
 except client.ApiError as e:
-    controller.error_handler(255, 255, 0, 0.5, str(e))
-    
+    controller.error_handler(255, 255, 0, 1, str(e))
+except client.DataError as e:
+    controller.error_handler(0, 0, 255, 1, str(e))
+
 while True:
     try:
         r, g, b = client.get_color(url, controller_id, token)
         controller.set_color(r, g, b)
     except client.ApiError as e:
-        controller.error_handler(255, 0, 255, 0.5, str(e))
+        controller.error_handler(255, 0, 255, 1, str(e))
+    except client.DataError as e:
+        controller.error_handler(0, 0, 255, 1, str(e))
+
     time.sleep(poll_interval)

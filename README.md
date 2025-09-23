@@ -54,8 +54,16 @@ You could also use the [MicroPico VS Code Extension](https://github.com/paulober
 
 ## Error Codes
 
-| Color  | Interval | Message             |
-| ------ | -------- | ------------------- |
-| White  | 0        | Starting up         |
-| Red    | 1        | Internal Wifi Error |
-| Yellow | 0.5      | API Error           |
+| Color  | Interval | Message                               |
+| ------ | -------- | ------------------------------------- |
+| Red    | 1        | Internal Wifi Error                   |
+| Yellow | 1        | API Connection Error                  |
+| Blue   | 1        | Laterna Error (check your API config) |
+
+You can connect to the microcontroller over REPL to get more detailed error descriptions. After you've established an connection, exit the current file execution by running 'CTRL + C'. Then, import main to restart the program
+
+```sh
+$ mpremote connect /dev/ttyUSB0
+> CTRL-C
+>>> import main
+```
