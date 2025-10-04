@@ -16,6 +16,7 @@ def init_leds(pins, freq=1000):
 
         for pin in (_red, _green, _blue):
             pin.freq(freq)
+            pin.duty(0)
         
     except ValueError as e:
         logger("ERROR: " + str(e))
