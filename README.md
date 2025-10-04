@@ -1,6 +1,12 @@
 # lamps-ESP32
 
-Created for personal usage only, no support guaranteed. Although I don't really see any point for anyone else to use this, I'm gonna try to help either over at discord (@siesta.161) or in the GitHub issues of this repo, if any problems arise (they probably will).
+Created for personal usage only, no support guaranteed. Although I don't really see any point for anyone else to use this, I'm gonna try to help either over at discord (@siesta.161) or in the GitHub issues of this repo, if any problems arise.
+
+> [!WARNING]
+> The wifi connection may or may not work. I'm gonna be completly honest here
+> and admit that I have no idea what causes this behaviour. 
+> I've spent countless times trying to debug this shit and the problem seems to always fix it by itself. 
+> This is one of the main reasons why I wouldn't recommend anyone to use this except for myself (and even I don't want to anymore). The whole project should be treated more or less like an amateur attempt at recreating an smart LED system
 
 ## Setup
 
@@ -56,7 +62,8 @@ You could also use the [MicroPico VS Code Extension](https://github.com/paulober
 ## Error Codes
 
 | Color        | Interval | Message                               |
-| ------------ | -------- | ------------------------------------- |
+|--------------|----------|---------------------------------------|
+| Orange       | ∞        | Connecting to wifi...                 |
 | Red          | 1        | Internal Wifi Error                   |
 | Yellow       | 1        | API Connection Error                  |
 | Blue         | 1        | Laterna Error (check your API config) |

@@ -1,11 +1,14 @@
 import network, time
 from modules.utils.helpers import logger
+from modules.led import controller
+
 
 class WifiError(Exception):
     pass
 
 def connect_wifi(ssid, password):
     logger("Trying to connect to WiFi...")
+    controller.set_color(255, 165, 0)
 
     wlan = network.WLAN(network.STA_IF)
     if not wlan.active():
