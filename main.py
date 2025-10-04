@@ -20,16 +20,16 @@ controller.init_leds(config["led"])
 try: 
     wifi.connect_wifi(config["wifi"]["SSID"], config["wifi"]["password"])
 except wifi.WifiError as e:
-    controller.error_handler(255, 0, 0, 1, str(e))
+    controller.error_handler(255, 0, 0, str(e))
 
 try: 
     r, g, b = client.get_color(url, controller_id, token)
     controller.set_color(r, g, b)
     current_color = (r, g, b)
 except client.ApiError as e:
-    controller.error_handler(255, 255, 0, 1, str(e))
+    controller.error_handler(255, 255, 0, str(e))
 except client.DataError as e:
-    controller.error_handler(0, 0, 255, 1, str(e))
+    controller.error_handler(0, 0, 255, str(e))
 
 logger("Everything set up! Running the main loop...")
 while True:
@@ -39,8 +39,8 @@ while True:
             controller.set_color(r, g, b)
             current_color = (r, g, b)
     except client.ApiError as e:
-        controller.error_handler(255, 0, 255, 1, str(e))
+        controller.error_handler(255, 0, 255, str(e))
     except client.DataError as e:
-        controller.error_handler(0, 0, 255, 1, str(e))
+        controller.error_handler(0, 0, 255, str(e))
 
     time.sleep(poll_interval)

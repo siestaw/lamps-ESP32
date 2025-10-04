@@ -36,7 +36,7 @@ def set_color(r, g, b, error=False):
     _green.duty(scale(g))
     _blue.duty(scale (b))
 
-def error_handler(r, g, b, interval, msg):
+def error_handler(r, g, b, msg, interval=1):
     logger(str("ERROR: " + msg))
     while True:
         set_color(r, g, b, error=True)
