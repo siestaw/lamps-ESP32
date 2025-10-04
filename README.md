@@ -6,7 +6,7 @@ Created for personal usage only, no support guaranteed. Although I don't really 
 > The wifi connection may or may not work. I'm gonna be completly honest here
 > and admit that I have no idea what causes this behaviour. 
 > I've spent countless times trying to debug this shit and the problem seems to always fix it by itself. 
-> This is one of the main reasons why I wouldn't recommend anyone to use this except for myself (and even I don't want to anymore). The whole project should be treated more or less like an amateur attempt at recreating an smart LED system
+> This is one of the main reasons why I wouldn't recommend anyone to use this except for myself (and even I don't want to anymore).
 
 ## Setup
 
